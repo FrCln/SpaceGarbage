@@ -39,5 +39,5 @@ async def explode(canvas, center_row, center_column):
 
         draw_frame(canvas, corner_row, corner_column, frame)
 
-        await sleep(5)
+        await sleep(10)
         draw_frame(canvas, corner_row, corner_column, frame, negative=True)
