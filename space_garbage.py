@@ -22,7 +22,7 @@ async def fly_garbage(canvas, column, garbage_frame, speed=0.5):
         row += speed
 
 
-def garbage_frame(name):
+def load_garbage_frame(name):
     with open(os.path.join('garbage', name + '.txt'), "r") as garbage_file:
         frame = garbage_file.read()
 

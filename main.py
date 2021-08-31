@@ -8,8 +8,8 @@ from curses_tools import read_controls, draw_frame, get_frame_size
 from explosion import explode
 from obstacle import Obstacle
 from rocket import Rocket
-from space_garbage import fly_garbage, garbage_frame
 from space_calendar import get_garbage_delay_tics, update_year, show_year, garbage_present, get_year
+from space_garbage import fly_garbage, load_garbage_frame
 from utils import sleep
 
 
@@ -29,6 +29,7 @@ async def rocket_control(canvas):
         rows_direction, columns_direction, space_pressed = read_controls(canvas)
         rocket.update_speed(rows_direction, columns_direction)
         rocket.update()
+        if space_pressed and get_year() >= 2020:
             coroutines.append(fire(canvas, rocket.y, rocket.x + 2))
         for obstacle in obstacles:
             if (rocket.y, rocket.x) in obstacle:
@@ -104,17 +105,10 @@ async def fly_garbage(canvas, column, garbage_frame, delay=10):
     obstacles.remove(obstacle)
 
 
-def garbage_frame(name):
-    with open(os.path.join('garbage', name + '.txt'), "r") as garbage_file:
-        frame = garbage_file.read()
-
-    return frame
-
-
 async def fill_orbit_with_garbage(canvas):
     h, w = canvas.getmaxyx()
     garbage_names = ['duck', 'hubble', 'lamp', 'trash_large', 'trash_small', 'trash_xl']
-    garbage_frames = [garbage_frame(name) for name in garbage_names]
+    garbage_frames = [load_garbage_frame(name) for name in garbage_names]
 
     while True:
         if garbage_present():
