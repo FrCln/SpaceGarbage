@@ -8,19 +8,19 @@
 Установка в Debian-based дистрибутивах:
 
 ```bash
-    sudo apt install python3.9
+sudo apt install python3.9
 ```
 
 Чтобы узнать версию установленного интерпретатора, можно использовать команду:
 
 ```bash
-    python3 --vesrion
+python3 --vesrion
 ```
 
 Для установки игры необходимо склонировать репозиторий:
 
 ```bash
-    git clone https://github.com/FrCln/SpaceGarbage.git
+git clone https://github.com/FrCln/SpaceGarbage.git
 ```
 
 ## Запуск
@@ -28,6 +28,6 @@
 Когда репозиторий склонирован, нужно перейти в папку, в которую он склонирован и запустить скрипт main.py:
 
 ```bash
-    cd SpaceGarbage
-    python3 main.py
+cd SpaceGarbage
+python3 main.py
 ```
