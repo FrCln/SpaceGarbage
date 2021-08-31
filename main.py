@@ -8,8 +8,8 @@ from curses_tools import read_controls, draw_frame, get_frame_size
 from explosion import explode
 from obstacle import Obstacle
 from rocket import Rocket
-from space_calendar import get_garbage_delay_tics, update_year, show_year, garbage_present
 from space_garbage import fly_garbage, garbage_frame
+from space_calendar import get_garbage_delay_tics, update_year, show_year, garbage_present, get_year
 from utils import sleep
 
 
@@ -29,7 +29,6 @@ async def rocket_control(canvas):
         rows_direction, columns_direction, space_pressed = read_controls(canvas)
         rocket.update_speed(rows_direction, columns_direction)
         rocket.update()
-        if space_pressed and year >= 2020:
             coroutines.append(fire(canvas, rocket.y, rocket.x + 2))
         for obstacle in obstacles:
             if (rocket.y, rocket.x) in obstacle:

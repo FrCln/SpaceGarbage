@@ -28,7 +28,7 @@ PHRASES = {
     2020: "Take the plasma gun! Shoot the garbage!",
 }
 
-year = 1957
+_year = 1957
 
 
 @cache
@@ -40,36 +40,39 @@ def create_year_frame(year):
 
 
 def get_garbage_delay_tics():
-    if year < 1961:
+    if _year < 1961:
         return 150
-    elif year < 1969:
+    elif _year < 1969:
         return 200
-    elif year < 1981:
+    elif _year < 1981:
         return 140
-    elif year < 1995:
+    elif _year < 1995:
         return 100
-    elif year < 2010:
+    elif _year < 2010:
         return 80
-    elif year < 2020:
+    elif _year < 2020:
         return 60
     else:
         return 20
 
 
 async def update_year():
-    global year
+    global _year
     while True:
         await sleep(150)
-        year += 1
+        _year += 1
 
 
 async def show_year(canvas):
     while True:
-        frame = create_year_frame(year)
+        frame = create_year_frame(_year)
         draw_frame(canvas, 1, 1, frame)
         await sleep(1)
         draw_frame(canvas, 1, 1, frame, negative=True)
 
 
 def garbage_present():
-    return year >= 1961
+    return _year >= 1961
+
+def get_year():
+    return _year
